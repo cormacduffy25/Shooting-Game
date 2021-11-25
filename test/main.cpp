@@ -25,7 +25,7 @@
 * https://www.youtube.com/watch?v=BNH96H7DW90 - SFML C++ Tutorial 06 | Simple game using WASD and Mouse!
 * https://www.youtube.com/watch?v=DZOCzW9e6Qs - SFML C++ Tutorial 08 | Shooter game with many projectiles and enemies!
 * 
-* Suraj Sharma is really good Youtube Channel for make SFML game Tutorials :D
+* Suraj Sharma is really good Youtube Channel for making SFML game Tutorials :D
 */
 
 using namespace sf;
