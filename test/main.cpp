@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include<cstdlib>
 #include <vector>
 
@@ -33,6 +34,20 @@ void Update(int &keyTime, CircleShape &player, RenderWindow &window); //function
 
 int main()
 {
+		//Audio
+		SoundBuffer pewBuffer, boomBuffer;
+
+		if (!pewBuffer.loadFromFile("laserRetro_000.ogg"))
+			return -1;
+
+		if (!boomBuffer.loadFromFile("explosionCrunch_000.ogg"))
+			return -1;
+
+		Sound pew, boom;
+		pew.setBuffer(pewBuffer);
+		boom.setBuffer(boomBuffer);
+
+
 	int keyTime = 5; //This is KeyFrames
 
 	srand(time(NULL)); //To Create a Random Seed for each game 
@@ -95,6 +110,8 @@ int main()
 			projectile.setPosition(playerCenter);
 			projectiles.push_back(CircleShape(projectile));
 
+			pew.play();
+
 			shootTimer = 0;
 		}
 
@@ -138,6 +155,7 @@ int main()
 					{
 						projectiles.erase(projectiles.begin() + i);
 						enemies.erase(enemies.begin() + k);
+						boom.play();
 						break;
 					}
 				}
