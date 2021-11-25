@@ -162,6 +162,15 @@ int main()
 			}
 		}
 
+		//Close Game
+
+		if (Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			// quit...
+			// Someone closed the window- bye
+			window.close();
+		}
+
 		Update(keyTime, player, window); //Movement. This is only Function so far :/
 		
 		//~~~DRAW~~~
