@@ -30,7 +30,9 @@
 
 using namespace sf;
 
-void Update(int &keyTime, CircleShape &player, RenderWindow &window); //function for Player's movement on the x axis 
+void Movement(int &keyTime, CircleShape &player, RenderWindow &window); //function for Player's movement on the x axis 
+
+void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter);
 
 int main()
 {
@@ -102,7 +104,7 @@ int main()
 		playerCenter = Vector2f(player.getPosition().x, player.getPosition().y); //Finding the Centre Area of Player
 
 		//projectiles
-		if (shootTimer < 5)
+		/*if (shootTimer < 5)
 			shootTimer++;
 
 		if (Keyboard::isKeyPressed(Keyboard::Space) && shootTimer >= 5) //Shoot using the Space Bar
@@ -113,7 +115,7 @@ int main()
 			pew.play();
 
 			shootTimer = 0;
-		}
+		} */
 
 		for (size_t i = 0; i < projectiles.size(); i++)
 		{
@@ -171,7 +173,8 @@ int main()
 			window.close();
 		}
 
-		Update(keyTime, player, window); //Movement. This is only Function so far :/
+		Movement(keyTime, player, window); //Movement. This is only Function so far :/
+		Shoot( shootTimer, pew, projectile, projectiles, playerCenter);
 		
 		//~~~DRAW~~~
 		window.clear();
@@ -199,7 +202,7 @@ int main()
 
 
 //~~~FUNCTIONS~~~
-void Update(int& keyTime, CircleShape& player, RenderWindow &window) //Using Left and Right Key to Move
+void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using Left and Right Key to Move
 {
 	if (keyTime < 5)
 		keyTime++;
@@ -212,5 +215,20 @@ void Update(int& keyTime, CircleShape& player, RenderWindow &window) //Using Lef
 	if (Keyboard::isKeyPressed(Keyboard::Right) && player.getPosition().x +player.getRadius() < window.getSize().x) {
 		player.move(10.f, 0.f);
 		keyTime = 0;
+	}
+}
+
+void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) {
+	if (shootTimer < 5)
+		shootTimer++;
+
+	if (Keyboard::isKeyPressed(Keyboard::Space) && shootTimer >= 5) //Shoot using the Space Bar
+	{
+		projectile.setPosition(playerCenter);
+		projectiles.push_back(CircleShape(projectile));
+
+		pew.play();
+
+		shootTimer = 0;
 	}
 }
