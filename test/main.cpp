@@ -36,6 +36,8 @@ void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<Cir
 
 void EnemySpwaner(int& enemySpawnTimer, RectangleShape& enemy, std::vector<RectangleShape>& enemies, RenderWindow& window);
 
+void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom);
+
 int main()
 {
 		//Audio
@@ -115,7 +117,7 @@ int main()
 		EnemySpwaner(enemySpawnTimer, enemy, enemies, window);
 
 		//Collision
-		if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
+		/*if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
 		{
 			for (size_t i = 0; i < projectiles.size(); i++)
 			{
@@ -130,7 +132,8 @@ int main()
 					}
 				}
 			}
-		}
+		}*/ 
+
 
 		//Close Game
 
@@ -223,5 +226,24 @@ void EnemySpwaner(int& enemySpawnTimer, RectangleShape& enemy, std::vector<Recta
 
 		if (enemies[i].getPosition().y > window.getSize().y)
 			enemies.erase(enemies.begin() + i);
+	}
+}
+
+void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom) {
+	if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
+	{
+		for (size_t i = 0; i < projectiles.size(); i++)
+		{
+			for (size_t k = 0; k < enemies.size(); k++)
+			{
+				if (projectiles[i].getGlobalBounds().intersects(enemies[k].getGlobalBounds()))
+				{
+					projectiles.erase(projectiles.begin() + i);
+					enemies.erase(enemies.begin() + k);
+					boom.play();
+					break;
+				}
+			}
+		}
 	}
 }
