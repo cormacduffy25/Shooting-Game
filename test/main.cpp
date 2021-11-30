@@ -114,26 +114,6 @@ int main()
 
 		EnemySpwaner(enemySpawnTimer, enemy, enemies, window);
 
-		/*if (enemySpawnTimer < 15) //Spawns the amount of enemies onto the screen. 15 is the max
-			enemySpawnTimer++;
-
-		if (enemySpawnTimer >= 15)
-		{
-			enemy.setPosition((rand() % int(window.getSize().x - enemy.getSize().x)), 0.f); //this is to make enemies appear random on the top of the screen 
-			enemies.push_back(RectangleShape(enemy));
-
-			enemySpawnTimer = 0;
-		}
-
-
-		for (size_t i = 0; i < enemies.size(); i++)
-		{
-			enemies[i].move(0.f, 5.f);
-
-			if (enemies[i].getPosition().y > window.getSize().y)
-				enemies.erase(enemies.begin() + i);
-		} */
-
 		//Collision
 		if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
 		{
