@@ -102,28 +102,11 @@ int main()
 
 		//player
 		playerCenter = Vector2f(player.getPosition().x, player.getPosition().y); //Finding the Centre Area of Player
+		Movement(keyTime, player, window);
 
 		//projectiles
-		/*if (shootTimer < 5)
-			shootTimer++;
 
-		if (Keyboard::isKeyPressed(Keyboard::Space) && shootTimer >= 5) //Shoot using the Space Bar
-		{
-			projectile.setPosition(playerCenter);
-			projectiles.push_back(CircleShape(projectile));
-
-			pew.play();
-
-			shootTimer = 0;
-		} */
-
-		for (size_t i = 0; i < projectiles.size(); i++)
-		{
-			projectiles[i].move(0.f, -10.f);
-
-			if (projectiles[i].getPosition().y <= 0)
-				projectiles.erase(projectiles.begin() + i);
-		}
+		Shoot(shootTimer, pew, projectile, projectiles, playerCenter);
 
 		//enemies
 		if (enemySpawnTimer < 15) //Spawns the amount of enemies onto the screen. 15 is the max
@@ -173,9 +156,6 @@ int main()
 			window.close();
 		}
 
-		Movement(keyTime, player, window); //Movement. This is only Function so far :/
-		Shoot( shootTimer, pew, projectile, projectiles, playerCenter);
-		
 		//~~~DRAW~~~
 		window.clear();
 
@@ -192,11 +172,7 @@ int main()
 		}
 
 		window.display();
-
-
 	}
-
-
 	return 0; 
 }
 
@@ -218,7 +194,8 @@ void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using L
 	}
 }
 
-void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) {
+void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) //Shooting Function
+{
 	if (shootTimer < 5)
 		shootTimer++;
 
@@ -230,5 +207,13 @@ void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<Cir
 		pew.play();
 
 		shootTimer = 0;
+	}
+
+	for (size_t i = 0; i < projectiles.size(); i++)
+	{
+		projectiles[i].move(0.f, -10.f);
+
+		if (projectiles[i].getPosition().y <= 0)
+			projectiles.erase(projectiles.begin() + i);
 	}
 }
