@@ -177,7 +177,7 @@ void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using L
 		player.move(10.f, 0.f);
 		keyTime = 0;
 	}
-}
+} 
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) //Shooting Function
 {
