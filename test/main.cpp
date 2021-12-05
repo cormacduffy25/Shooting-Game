@@ -117,23 +117,8 @@ int main()
 		EnemySpwaner(enemySpawnTimer, enemy, enemies, window);
 
 		//Collision
-		/*if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
-		{
-			for (size_t i = 0; i < projectiles.size(); i++)
-			{
-				for (size_t k = 0; k < enemies.size(); k++)
-				{
-					if (projectiles[i].getGlobalBounds().intersects(enemies[k].getGlobalBounds()))
-					{
-						projectiles.erase(projectiles.begin() + i);
-						enemies.erase(enemies.begin() + k);
-						boom.play();
-						break;
-					}
-				}
-			}
-		}*/ 
 
+		Hit(enemies, projectiles, boom);
 
 		//Close Game
 
