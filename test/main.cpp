@@ -5,7 +5,9 @@
 #include <SFML/Audio.hpp>
 #include<cstdlib>
 #include <vector>
+#include <sstream>
 #include "Player.h"
+
 
 /*
 		~~~RULES OF THE GAME~~~
@@ -39,7 +41,7 @@ void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& project
 
 int main()
 {
-		//Audio
+//Audio
 		SoundBuffer pewBuffer, boomBuffer;
 
 		if (!pewBuffer.loadFromFile("laserRetro_000.ogg"))
@@ -52,6 +54,15 @@ int main()
 		pew.setBuffer(pewBuffer);
 		boom.setBuffer(boomBuffer);
 
+//HUD
+		Text hud;
+
+		Font font;
+		font.loadFromFile("game_over.ttf");
+
+		hud.setFont(font);
+		hud.setCharacterSize(50);
+		hud.setFillColor(Color::White);
 
 	int keyTime = 5; //This is KeyFrames
 
@@ -69,12 +80,6 @@ int main()
 	RectangleShape enemy;
 	enemy.setFillColor(Color::Magenta);
 	enemy.setSize(Vector2f(50.f, 50.f));
-
-	/*CircleShape player;
-	player.setFillColor(Color::White);
-	player.setRadius(50.f);
-	player.setOrigin(player.getRadius(), player.getRadius());
-	player.setPosition(window.getSize().x / 2, window.getSize().y- 70);*/
 
 	Player player(50.f);
 	player.getPosition(window);
@@ -137,12 +142,16 @@ int main()
 				{
 					lifePoints--;
 					if (lifePoints < 1) {
-						std::cout << "New Game" << std::endl; 
 						lifePoints = 3;
 					}
 				}
 			}
 		}
+
+		//Update the HUD text 
+		std::stringstream ss;
+		ss << "Lives" << lifePoints;
+		hud.setString(ss.str());
 
 		//Close Game
 
@@ -167,6 +176,8 @@ int main()
 		{
 			window.draw(projectiles[i]);
 		}
+
+		window.draw(hud);
 
 		window.display();
 	}
