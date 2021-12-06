@@ -20,7 +20,7 @@
 * - Moveable background/wallpaper to make illusion that ship is flying and going foward
 * - Scores/Highscores 
 * - Way to Lose the Game 
-* - Audio
+* - Audio (Done)
 * 
 * Youtube Videos I used for creating it 
 * https://www.youtube.com/watch?v=BNH96H7DW90 - SFML C++ Tutorial 06 | Simple game using WASD and Mouse!
@@ -30,8 +30,6 @@
 */
 
 using namespace sf;
-
-//void Movement(int &keyTime, CircleShape &player, RenderWindow &window); //function for Player's movement on the x axis 
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter);
 
@@ -158,23 +156,6 @@ int main()
 	return 0; 
 }
 
-
-//~~~FUNCTIONS~~~
-/*void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using Left and Right Key to Move
-{
-	if (keyTime < 5)
-		keyTime++;
-
-	if (Keyboard::isKeyPressed(Keyboard::Left) && player.getPosition().x - player.getRadius() > 0 ) {
-		player.move(-10.f, 0.f);
-		keyTime = 0;
-	}
-
-	if (Keyboard::isKeyPressed(Keyboard::Right) && player.getPosition().x +player.getRadius() < window.getSize().x) {
-		player.move(10.f, 0.f);
-		keyTime = 0;
-	}
-} */
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) //Shooting Function
 {
