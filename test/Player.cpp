@@ -23,7 +23,7 @@ void Player::getPosition(sf::RenderWindow& window) {
 	player.setPosition(window.getSize().x / 2, window.getSize().y - 70);
 }
 
-void Player::Movement(sf::RenderWindow& window) //Using Left and Right Key to Move
+void Player::movement(sf::RenderWindow& window) //Using Left and Right Key to Move
 {
 	if (keyTime < 5)
 		keyTime++;

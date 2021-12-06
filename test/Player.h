@@ -16,5 +16,5 @@ public:
 	const float getPositionY();
 
 	void getPosition(sf::RenderWindow& window);
-	void Movement(sf::RenderWindow& window); //Using Left and Right Key to Move
+	void movement(sf::RenderWindow& window); //Using Left and Right Key to Move
 };

@@ -121,7 +121,7 @@ int main()
 		 //Finding the Centre Area of Player
 		//Movement(keyTime, player, window);
 
-		player.Movement(window);
+		player.movement(window);
 
 		//projectiles
 
