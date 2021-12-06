@@ -37,7 +37,7 @@ void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<Cir
 
 void EnemySpwaner(int& enemySpawnTimer, RectangleShape& enemy, std::vector<RectangleShape>& enemies, RenderWindow& window);
 
-void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom);
+void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom, int &points);
 
 int main()
 {
@@ -88,6 +88,7 @@ int main()
 
 	//Points
 	int lifePoints = 3;
+	int points = 0;
 
 
 	//This is to create nultiple of projectiles at once, same as for the enemies 
@@ -132,7 +133,7 @@ int main()
 
 		//Collision
 
-		Hit(enemies, projectiles, boom);
+		Hit(enemies, projectiles, boom, points);
 
 		//Lose Live - testing 
 		if (!enemies.empty()) {
@@ -143,6 +144,7 @@ int main()
 					lifePoints--;
 					if (lifePoints < 1) {
 						lifePoints = 3;
+						points = 0;
 					}
 				}
 			}
@@ -150,7 +152,7 @@ int main()
 
 		//Update the HUD text 
 		std::stringstream ss;
-		ss << "Lives" << lifePoints;
+		ss << "Lives: " << lifePoints << " Score: " << points;
 		hud.setString(ss.str());
 
 		//Close Game
@@ -232,7 +234,7 @@ void EnemySpwaner(int& enemySpawnTimer, RectangleShape& enemy, std::vector<Recta
 	}
 }
 
-void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom) {
+void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& projectiles, Sound& boom, int &points) {
 	if (!enemies.empty() && !projectiles.empty()) //When the projectile hits the enemy, enemy object will be erase
 	{
 		for (size_t i = 0; i < projectiles.size(); i++)
@@ -244,6 +246,8 @@ void Hit(std::vector<RectangleShape>& enemies, std::vector<CircleShape>& project
 					projectiles.erase(projectiles.begin() + i);
 					enemies.erase(enemies.begin() + k);
 					boom.play();
+					points++;
+
 					break;
 				}
 			}
