@@ -75,12 +75,14 @@ int main()
 	player.setRadius(50.f);
 	player.setOrigin(player.getRadius(), player.getRadius());
 	player.setPosition(window.getSize().x / 2, window.getSize().y- 70);*/
+
 	Player player(50.f);
 	player.getPosition(window);
 	Vector2f playerCenter;
 	int shootTimer = 0;
 
-
+	//Points
+	int lifePoints = 3;
 
 
 	//This is to create nultiple of projectiles at once, same as for the enemies 
@@ -126,6 +128,21 @@ int main()
 		//Collision
 
 		Hit(enemies, projectiles, boom);
+
+		//Lose Live - testing 
+		if (!enemies.empty()) {
+			for (size_t i = 0; i < enemies.size(); i++)
+			{
+				if (enemies[i].getGlobalBounds().top > 475)
+				{
+					lifePoints--;
+					if (lifePoints < 1) {
+						std::cout << "New Game" << std::endl; 
+						lifePoints = 3;
+					}
+				}
+			}
+		}
 
 		//Close Game
 
