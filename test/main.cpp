@@ -23,6 +23,8 @@
 * - Scores/Highscores 
 * - Way to Lose the Game 
 * - Audio (Done)
+* - game over screen 
+*
 * 
 * Youtube Videos I used for creating it 
 * https://www.youtube.com/watch?v=BNH96H7DW90 - SFML C++ Tutorial 06 | Simple game using WASD and Mouse!
