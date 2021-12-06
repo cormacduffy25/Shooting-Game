@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 #include<cstdlib>
 #include <vector>
+#include "Player.h"
 
 /*
 		~~~RULES OF THE GAME~~~
@@ -30,7 +31,7 @@
 
 using namespace sf;
 
-void Movement(int &keyTime, CircleShape &player, RenderWindow &window); //function for Player's movement on the x axis 
+//void Movement(int &keyTime, CircleShape &player, RenderWindow &window); //function for Player's movement on the x axis 
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter);
 
@@ -71,13 +72,18 @@ int main()
 	enemy.setFillColor(Color::Magenta);
 	enemy.setSize(Vector2f(50.f, 50.f));
 
-	CircleShape player;
+	/*CircleShape player;
 	player.setFillColor(Color::White);
 	player.setRadius(50.f);
 	player.setOrigin(player.getRadius(), player.getRadius());
-	player.setPosition(window.getSize().x / 2, window.getSize().y- 70);
+	player.setPosition(window.getSize().x / 2, window.getSize().y- 70);*/
+	Player player(50.f);
+	player.getPosition(window);
 	Vector2f playerCenter;
 	int shootTimer = 0;
+
+
+
 
 	//This is to create nultiple of projectiles at once, same as for the enemies 
 	std::vector<CircleShape> projectiles;
@@ -105,8 +111,11 @@ int main()
 		//~~~UPDATE~~~
 
 		//player
-		playerCenter = Vector2f(player.getPosition().x, player.getPosition().y); //Finding the Centre Area of Player
-		Movement(keyTime, player, window);
+		playerCenter = sf::Vector2f(player.getPositionX(), player.getPositionY());
+		 //Finding the Centre Area of Player
+		//Movement(keyTime, player, window);
+
+		player.Movement(window);
 
 		//projectiles
 
@@ -132,7 +141,7 @@ int main()
 		//~~~DRAW~~~
 		window.clear();
 
-		window.draw(player);
+		window.draw(player.getShape());
 
 		for (size_t i = 0; i < enemies.size(); i++)
 		{
@@ -151,7 +160,7 @@ int main()
 
 
 //~~~FUNCTIONS~~~
-void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using Left and Right Key to Move
+/*void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using Left and Right Key to Move
 {
 	if (keyTime < 5)
 		keyTime++;
@@ -165,7 +174,7 @@ void Movement(int& keyTime, CircleShape& player, RenderWindow &window) //Using L
 		player.move(10.f, 0.f);
 		keyTime = 0;
 	}
-} 
+} */
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter) //Shooting Function
 {

@@ -10,6 +10,19 @@ sf::CircleShape Player::getShape()
 	return player;
 }
 
+const float  Player::getPositionX(){
+
+	return player.getPosition().x;
+}
+const float Player::getPositionY(){
+
+	return player.getPosition().y;
+}
+
+void Player::getPosition(sf::RenderWindow& window) {
+	player.setPosition(window.getSize().x / 2, window.getSize().y - 70);
+}
+
 void Player::Movement(sf::RenderWindow& window) //Using Left and Right Key to Move
 {
 	if (keyTime < 5)
