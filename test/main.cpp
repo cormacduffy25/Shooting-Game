@@ -20,8 +20,8 @@
 * - All the Objects and Functions into Classes (ccp & header files)
 * - Change the shapes into Sprites for the game 
 * - Moveable background/wallpaper to make illusion that ship is flying and going foward
-* - Scores/Highscores 
-* - Way to Lose the Game 
+* - Scores/Highscores (The Score is done/ Highscore isnt)
+* - Way to Lose the Game (Done)
 * - Audio (Done)
 * - game over screen 
 *
@@ -65,6 +65,11 @@ int main()
 		hud.setFont(font);
 		hud.setCharacterSize(50);
 		hud.setFillColor(Color::White);
+
+		Text gameOver;
+		gameOver.setFont(font);
+		gameOver.setCharacterSize(75);
+		gameOver.setFillColor(Color::Red);
 
 	int keyTime = 5; //This is KeyFrames
 
@@ -145,17 +150,23 @@ int main()
 				{
 					lifePoints--;
 					if (lifePoints < 1) {
-						lifePoints = 3;
+						lifePoints = 3; 
 						points = 0;
 					}
 				}
 			}
 		}
+	
 
 		//Update the HUD text 
 		std::stringstream ss;
 		ss << "Lives: " << lifePoints << " Score: " << points;
 		hud.setString(ss.str());
+
+		//Game Over Text 
+		std::stringstream ss2;
+		ss2 << "Game Over";
+		gameOver.setString(ss2.str());
 
 		//Close Game
 
