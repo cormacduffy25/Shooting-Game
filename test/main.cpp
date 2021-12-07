@@ -15,24 +15,6 @@
 * Use the SPACE bar to SHOOT the enemy ships
 */
 
-/*
-*		~~~IDEAS and TODO LIST~~~
-* - All the Objects and Functions into Classes (ccp & header files)
-* - Change the shapes into Sprites for the game 
-* - Moveable background/wallpaper to make illusion that ship is flying and going foward
-* - Scores/Highscores (The Score is done/ Highscore isnt)
-* - Way to Lose the Game (Done)
-* - Audio (Done)
-* - game over screen 
-*
-* 
-* Youtube Videos I used for creating it 
-* https://www.youtube.com/watch?v=BNH96H7DW90 - SFML C++ Tutorial 06 | Simple game using WASD and Mouse!
-* https://www.youtube.com/watch?v=DZOCzW9e6Qs - SFML C++ Tutorial 08 | Shooter game with many projectiles and enemies!
-* 
-* Suraj Sharma is really good Youtube Channel for making SFML game Tutorials :D
-*/
-
 using namespace sf;
 
 void Shoot(int& shootTimer, Sound& pew, CircleShape& projectile, std::vector<CircleShape>& projectiles, Vector2f& playerCenter);
