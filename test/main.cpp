@@ -6,6 +6,7 @@
 #include<cstdlib>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include "Player.h"
 
 
@@ -13,6 +14,24 @@
 		~~~RULES OF THE GAME~~~
 * Use the LEFT and RIGHT keys to MOVE the ship
 * Use the SPACE bar to SHOOT the enemy ships
+*/
+
+/*
+*		~~~IDEAS and TODO LIST~~~
+* - All the Objects and Functions into Classes (ccp & header files)
+* - Change the shapes into Sprites for the game 
+* - Moveable background/wallpaper to make illusion that ship is flying and going foward
+* - Scores/Highscores (The Score is done/ Highscore isnt)
+* - Way to Lose the Game (Done)
+* - Audio (Done)
+* - game over screen 
+*
+* 
+* Youtube Videos I used for creating it 
+* https://www.youtube.com/watch?v=BNH96H7DW90 - SFML C++ Tutorial 06 | Simple game using WASD and Mouse!
+* https://www.youtube.com/watch?v=DZOCzW9e6Qs - SFML C++ Tutorial 08 | Shooter game with many projectiles and enemies!
+* 
+* Suraj Sharma is really good Youtube Channel for making SFML game Tutorials :D
 */
 
 using namespace sf;
@@ -54,6 +73,17 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Ball Shooter");
 	window.setFramerateLimit(60);
+	
+	//Background (wanted scrolling but couldnt get it to work)
+	sf::Texture texture;
+	sf::Sprite background;
+	if (texture.loadFromFile("background.jpg"))
+	{
+		texture.setRepeated(true);
+		background.setTexture(texture);
+	}
+	
+	
 
 	//Objects - Projectile, Enemy and Player (This need to be in Classes)
 
@@ -74,7 +104,24 @@ int main()
 	//Points
 	int lifePoints = 3;
 	int points = 0;
+	int highscore;
 
+	//High Score
+
+	//std::ifstream input("highscore\\highscore.txt");
+
+	//int high_score;
+	//input >> high_score;
+
+	//std::ofstream output("highscore\\highscore.txt");
+	//if (points < high_score)
+	//{
+	//	output << points;
+	//}
+	//else
+	//{
+		//output << high_score;
+	//}
 
 	//This is to create nultiple of projectiles at once, same as for the enemies 
 	std::vector<CircleShape> projectiles;
@@ -164,6 +211,8 @@ int main()
 
 		//~~~DRAW~~~
 		window.clear();
+		window.draw(background);
+		
 
 		window.draw(player.getShape());
 
@@ -178,6 +227,7 @@ int main()
 		}
 
 		window.draw(hud);
+		
 
 		window.display();
 	}
