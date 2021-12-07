@@ -66,11 +66,6 @@ int main()
 		hud.setCharacterSize(50);
 		hud.setFillColor(Color::White);
 
-		Text gameOver;
-		gameOver.setFont(font);
-		gameOver.setCharacterSize(75);
-		gameOver.setFillColor(Color::Red);
-
 	int keyTime = 5; //This is KeyFrames
 
 	srand(time(NULL)); //To Create a Random Seed for each game 
